@@ -63,7 +63,22 @@
         <div class="row">
           <h4 style="text-align:center">Experience</h4>
           <div id="experienceDiv">
-            
+          {% for experience in experiences %}
+                <div class="row addedRow">
+                  <div class="col-sm-4">
+                    <h5 class="namex">{{experience.FirmName}}</h5>
+                    <h6 class="namex">{{experience.JobTitle}}</h6>
+                    <p class="namex">{{experience.StartDate}}<br/>
+                    <p class="namex">{{experience.EndDate}}</p>
+                  </div>
+                  <div class="col-sm-8">
+                    <h6 class="namex">{{experience.Name1}}</h6>
+                    <p><small class="namex">{{experience.Description1}}</small></p>
+                    <h6 class="namex">{{experience.Name2}}</h6>
+                    <p><small class="namex">{{experience.Description2}}</small></p><br/>
+                  </div>
+                </div> 
+          {% endfor %}
           </div>
         </div>
         <div class="row">

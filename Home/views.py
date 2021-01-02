@@ -85,9 +85,15 @@ def create(request,pk):
     newSkills = []
     for skill in skills:
         newSkills.append({"Name":skill.skillName,"Value":skill.proficiency})
-        print(newSkills)
     skills.delete()
     
+    experiences = Experience.objects.filter(customer=customer)
+    newExperiences=[]
+    for experience in experiences:
+        newExperiences.append({"JobTitle":experience.jobTitle,"FirmName":experience.firmName,"StartDate":experience.startDate,"EndDate":experience.endDate,"Name1":experience.project1,"Description1":experience.description1,"Name2":experience.project2,"Description2":experience.description2})
+    experiences.delete()
+
+
     if request.method == "POST":
         institutionName = request.POST.get("secondarySchoolName")
         passingYear = request.POST.get("secondarySchoolPassingYear")
@@ -102,8 +108,18 @@ def create(request,pk):
         cityName3 = request.POST.get("collegeCityName")
         branch3 = request.POST.get("collegeBranchName")
         skills = json.loads(request.POST.get("skills"))
-        print(json.loads(request.POST.get("experiences")))
-        
+        experiences = json.loads(request.POST.get("experiences"))
+
+        for experience in experiences:
+            try:
+                check = Experience.objects.get(customer=customer,firmName=experience['FirmName'])
+                if check is not None:
+                    print("skill already exists")
+            except:
+                experienceObject = Experience(customer=customer,jobTitle=experience['JobTitle'],firmName=experience['FirmName'],startDate=experience['StartDate'],endDate=experience['EndDate']
+                ,project1=experience['Name1'],description1=experience['Description1'],project2=experience['Name2'],description2=experience['Description2'])
+                experienceObject.save()
+
         for skill in skills:
             try:
                 check = Skill.objects.get(customer=customer,skillName=skill['Name'])
@@ -149,7 +165,7 @@ def create(request,pk):
         
         
             
-    context = {'customer':customer, 'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': newSkills}
+    context = {'customer':customer, 'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': newSkills,'experiences': newExperiences}
     
     return render(request, 'create.html', context)
 

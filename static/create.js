@@ -11,9 +11,9 @@ $('#experienceIncrement').click(function(){
     const project2Description = $('#project2Description').val();
     const button = '<input type="button" class="btn btn-sm btn-danger deleteItemExp" value="Remove">';
     $('#experienceDiv').append(
-      '<div class="row"><div class="col-sm-4"><h5 class="namex 1">'+companyName+'</h5><h6 class="namex 2">'+companyDesination+'</h6>'+
-      '<p class="namex 3">'+endDate+'/<br/><p class="namex 4">'+startDate+'</p></div><div class="col-sm-8"><h6 class="namex 5">'+project1Title+'</h6><p><small class="namex 6">'+project1Description+'</small></p>'+
-      '<h6 class="namex 7">'+project2Title+'</h6><p><small class="namex 8">'+project2Description+'</small></p><br/>'+button+'</div></div>');
+      '<div class="row addedRow"><div class="col-sm-4"><h5 class="namex">'+companyName+'</h5><h6 class="namex">'+companyDesination+'</h6>'+
+      '<p class="namex">'+endDate+'<br/><p class="namex">'+startDate+'</p></div><div class="col-sm-8"><h6 class="namex">'+project1Title+'</h6><p><small class="namex">'+project1Description+'</small></p>'+
+      '<h6 class="namex">'+project2Title+'</h6><p><small class="namex">'+project2Description+'</small></p><br/>'+button+'</div></div>');
     $('#experienceCard').empty();
     $('#experienceCard').append(structure);
   })
@@ -95,7 +95,7 @@ $('#experienceIncrement').click(function(){
         return cookieValue;
     }
     const csrftoken = getCookie('csrftoken');
-    $('.experienceDiv').children('.namex').each(function () {
+    $('.experienceDiv').children().each(function () {
       var jObTitle = $('.1').text();
       var firmName = $('.2').text();
       var startDate = $('.3').text();
@@ -106,6 +106,19 @@ $('#experienceIncrement').click(function(){
       var description2 = $('.8').text();
       experiences.push({ JobTitle: jObTitle, FirmName:firmName, StartDate:startDate, EndDate: endDate ,Name1 : project1, Name2 : project2, Description1:description1, Description2:description2});     
   });
+    $('.addedRow').each(function (a,b) {
+      var elements = document.getElementsByClassName('namex'); 
+      var firmName = elements[0].textContent;
+      var jObTitle = elements[1].textContent;
+      var startDate = elements[2].textContent;
+      var endDate = elements[3].textContent;
+      var project1 = elements[4].textContent;
+      var project2 = elements[5].textContent;
+      var description1 = elements[6].textContent;
+      var description2 = elements[7].textContent;
+      experiences.push({ JobTitle: jObTitle, FirmName:firmName, StartDate:startDate, EndDate: endDate ,Name1 : project1, Name2 : project2, Description1:description1, Description2:description2});     
+    });
+
     $('.dynamic-body tr').each(function (a, b) {
       var name = $('.attrName', b).text();
       var value = $('.attrValue', b).text();

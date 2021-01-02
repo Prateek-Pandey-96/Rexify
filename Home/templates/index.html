@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Home
+{% endblock title %}
+{% block body %}
+<div class="container-fluid">
+  <div class="row my-4">
+    <div class="col-lg-4" >
+      <img src="../static/img/Carousel1.jpeg" style='height: 100%; width: 100%; object-fit: contain'>
+    </div>
+    <div class="col-lg-4">
+      <img src="../static/img/Carousel2..png" style='height: 100%; width: 100%; object-fit: contain'>
+    </div>
+    <div class="col-lg-4">
+      <img src="../static/img/Carousel3.jpeg" style='height: 100%; width: 100%; object-fit: contain'>
+    </div>
+  </div>
+  <div class="row my-4">
+    <div class="col-lg-6 text-center" >
+      <h3 >Making Resume was never this interactive!</h3>
+    </div>
+    <div class="col-lg-6 " >
+      <input type="button" id="createBtn" class="btn btn-primary" value="Create Resume"/>
+    </div>       
+  </div>
+  <div class="row my-4">
+    <div class="col-lg-4" >
+      <canvas id="myChart"></canvas>
+    </div> 
+    <div class="col-lg-4" >
+      second graph
+    </div>
+    <div class="col-lg-4" >
+      third graph
+    </div>   
+  </div>
+</div>
+<script  type="text/javascript">
+  $(document).ready(function(){
+    $('#createBtn').click(function(){
+      location.href = "{% url 'templates' %}";
+    })
+  })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Number of Visits/Month',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    }
+});
+</script>
+{% endblock body %}

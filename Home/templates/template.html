@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  Templates
+{% endblock title %}
+{% block body %}
+  <div class="cotainer h-100">
+    <div class="card-group">
+      <div class="card">
+        {% comment %} <img class="card-img-top" src="..."> {% endcomment %}
+        <div class="card-body">
+          <h5 class="card-title">Simple</h5>
+          <p class="card-text">This is an example best suited for entry level jobs !</p>
+          <input type="button" id="simpleCreateBtn" class="moveForward btn btn-primary" value="Create Resume"/>
+        </div>
+      </div>
+      <div class="card">
+        {% comment %} <img class="card-img-top" src="..."> {% endcomment %}
+        <div class="card-body">
+          <h5 class="card-title">Better</h5>
+          <p class="card-text">This is for professionals with medium experience ! </p>
+          <input type="button" id="betterCreateButton" class="moveForward btn btn-primary" value="Create Resume"/>
+        </div>
+      </div>
+      <div class="card">
+        {% comment %} <img class="card-img-top" src="..." alt="Card image cap"> {% endcomment %}
+        <div class="card-body">
+          <h5 class="card-title">Professional</h5>
+          <p class="card-text">This template is best suited to experts !</p>
+          <input type="button" id="professionalCreateButton" class="moveForward btn btn-primary" value="Create Resume"/>
+        </div>
+      </div>
+    </div>
+  </div>
+ <style>
+ .borderOfForm { 
+        border: black solid 2px;
+        margin-bottom: 10px;
+     }
+ </style>
+ <script  type="text/javascript">
+  $(document).ready(function(){
+    $('.moveForward').click(function(){
+      location.href = "{% url 'intermediate' %}";
+    })
+  })
+</script>
+
+{% endblock body %}

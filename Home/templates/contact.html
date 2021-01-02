@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+  Contact Me
+{% endblock title %}
+{% block body %}
+  <div class="container-fluid" >
+    <div class="row">
+      <img src="../static/img/ContactFinal.jpeg" style='height: 100%; width: 100%;'>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <h3>Contact Me!!</h3>
+        <form method="post" action="/contact/" autocomplete="off">
+         {% csrf_token %}
+          <div class="form-group row my-2">
+            <label for="senderName" class="col-sm-2 col-form-label">Name:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="senderName" id="senderName" placeholder="Name">
+              <span style="color: red;" id="nameError"></span>
+            </div>
+          </div>
+          <div class="form-group row my-2">
+            <label for="senderEmail" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-6">
+              <input type="Email" class="form-control" name="senderEmail" id="senderEmail" placeholder="Email">
+              <span style="color: red;" id="emailError"></span>
+            </div>
+          </div>
+          <div class="form-group row my-2">
+            <label for="senderQuery" class="col-sm-2 col-form-label">What can I do for you:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" name="senderQuery" id="senderQuery" placeholder="Write to me!">
+              <span style="color: red;" id="queryError"></span>
+            </div>
+          </div>
+          <div class="col-sm-8 text-center my-2">
+            <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+          </div>
+      </form>
+      </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('#submitButton').click(function(){
+        var name = $('#senderName').val();
+        var email = $('#senderEmail').val();
+        var emailRegEx = /\S+@\S+\.\S+/;
+        var query = $('#senderQuery').val();
+        if(name === "" || name.length <=3 ){
+          document.getElementById('nameError').innerHTML = "Please enter a valid name";
+          return false;
+        }
+        if(email === "" || emailRegEx.test(email)==false){
+          document.getElementById('emailError').innerHTML = "Please enter a valid email";
+          return false;
+        }
+        if(query === ""){
+          document.getElementById('queryError').innerHTML = "Please write something!";
+          return false;
+        }
+        return true;
+      })
+    })
+    </script>
+{% endblock body %}

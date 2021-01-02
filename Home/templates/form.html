@@ -1,0 +1,131 @@
+
+<div class="col border">
+            <form>
+            {% csrf_token %}
+              <div class="card mb-3 mt-3">
+                <div class="card-header">
+                  <h3>
+                    Education
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <div class="input-group">
+                    <span class="input-group-text">Secondary</span>
+                    <input type="text" aria-label="School" class="form-control" id="secondarySchoolName" placeholder="School">
+                    <input type="text" aria-label="City" class="form-control" id="secondaryCityName" placeholder="City">
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Details</span>
+                    <input type="text" aria-label="Stream" class="form-control" id="secondaryBranch" placeholder="Stream">
+                    <input type="number" min="1980" max="2099" step="1" id="secondaryPassingYear" class="form-control" placeholder="Year" />
+                  </div>
+                  <div class="input-group ">
+                    <span class="input-group-text">Senior Secondary</span>
+                    <input type="text" aria-label="School" class="form-control" id="srsecondarySchoolName" placeholder="School">
+                    <input type="text" aria-label="City" class="form-control" id="srsecondaryCityName" placeholder="City">
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Details</span>
+                    <input type="text" aria-label="Stream" class="form-control" id="srsecondaryBranch" placeholder="Stream">
+                    <input type="number" min="1980" max="2099" step="1" id="srsecondaryPassingYear" class="form-control" placeholder="Year" />
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">UnderGraduate</span>
+                    <input type="text" aria-label="College" class="form-control" id="collegeName" placeholder="College">
+                    <input type="text" aria-label="City" class="form-control" id="collegeCity" placeholder="City">                
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Details</span>
+                    <input type="text" aria-label="Stream" class="form-control" id="collegeBranch" placeholder="Stream">
+                    <input type="number" min="1980" max="2099" step="1" id="collegePassingYear" class="form-control" placeholder="Year" />
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3">
+              <div class="card-header">
+                <div class="row"> 
+              <div class="col">            
+                <h3>
+                  Experience
+                </h3> 
+              </div>
+              <div class="col" style="text-align:right;">               
+                <input type="button" value="Send To Resume" class="btn btn-sm btn-secondary" id="experienceIncrement">
+              </div>
+              </div>
+                </div>
+                <div class="card-body" id="experienceCard">
+                  <div class="input-group">
+                    <span class="input-group-text">Company</span>
+                    <input type="text" aria-label="Job Title" class="form-control" id="companyDesination" placeholder="Job Title">
+                    <input type="text" aria-label="Firm Name" class="form-control" id="companyName" placeholder="Firm Name">
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Duration</span> 
+                    <input type="date" aria-label="Description" class="form-control" id="startDate" placeholder="Description">
+                    <input type="date" aria-label="Description" class="form-control" id="endDate" placeholder="Description">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Project</span>
+                    <input type="text" aria-label="Project-1" class="form-control" id="project1Title" placeholder="Project-1">                
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Details</span> 
+                    <input type="text" aria-label="Description" class="form-control" id="project1Description" placeholder="Description">
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Project</span>
+                    <input type="text" aria-label="Project-2" class="form-control" id="project2Title" placeholder="Project-2">                
+                  </div>
+                  <div class="input-group ">
+                    <span class="input-group-text">Details</span> 
+                    <input type="text" aria-label="Description" class="form-control" id="project2Description" placeholder="Description">
+                  </div>
+                </div>
+                
+              </div>
+              <div class="card mb-3">
+              <div class="card-header"> 
+              <div class="row"> 
+              <div class="col">            
+                <h3>
+                  Skills
+                </h3> 
+              </div>
+              <div class="col" style="text-align:right;">               
+                <input type="button" value="Send To Resume" class="btn btn-sm btn-secondary" id="skillIncrement">
+              </div>
+              </div>
+              </div>
+              <div class="card-body" id="skillCard">
+                <div class="input-group">
+                    <span class="input-group-text">Skill</span>
+                    <input type="text" aria-label="Software" class="form-control" id="skillName" placeholder="Software">
+                    <select id = "myList" class="form-control">
+                      <option value = "Select Expertise">-----Select Expertise-----</option>
+                      <option value = "Beginner">Beginner</option>
+                      <option value = "Intermediate">Intermediate</option>
+                      <option value = "Experienced">Experienced</option>
+                    </select>
+                  </div>
+                </div>
+              
+              </div>
+            </form>
+            <div class="card mb-3">
+              <div class="card-header"><h3>Save</h3></div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <input type="checkbox" id="saveBtnCheck">
+                  </div>
+                  <div class="col-sm-10">
+                    <span id="confirmation"><small>Please make sure that you have done all the changes!</small></span>
+                  </div>
+                </div>
+                <div class="row">
+                  <input type="button" class="btn btn-sm btn-primary" id="saveBtn" value="Save" hidden>
+                </div>
+              </div>
+            </div>
+        </div>

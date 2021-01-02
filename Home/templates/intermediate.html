@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block title %} 
+    Intermediate Page
+{% endblock title %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Please provide these details to continue</h1>
+              <p class="lead" style="color: blue;">Note: I will be storing these details for analysis!</p>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 borderOfForm">
+            <img src="../static/img/resume1.jpeg" style='height: 100%; width: 100%;'>
+        </div>
+        <div class="col-sm-6 text-center borderOfForm">
+            <form method="post" action="{%url 'intermediate' %}" autocomplete="off" onsubmit="return myJsFunction()">
+                {% csrf_token %}
+                <div class="form-group row marginClass">
+                    <label for="customerName" class="col-sm-4 col-form-label required">Name:</label>
+                    <div class="col">
+                      <input type="text" class="form-control" id="customerName" name="customerName">
+                      <span id="customerNameError" style="color:red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row  marginClass">
+                    <label for="customerEmail" class="col-sm-4 col-form-label required">Email:</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="customerEmail" name="customerEmail">
+                        <span id="customerEmailError" style="color:red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row  marginClass">
+                    <label for="customerJob" class="col-sm-4 col-form-label required">Job:</label>
+                    <div class="col">
+                        <input type="text" class="form-control " id="customerJob" name="customerJob">
+                        <span id="customerJobError" style="color:red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row  marginClass">
+                    <label for="customerPhone" class="col-sm-4 col-form-label required">Phone:</label>
+                    <div class="col">
+                        <input type="number" class="form-control" id="customerPhone" name="customerPhone">
+                        <span id="customerPhoneError" style="color:red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row  marginClass">
+                    <label for="customerObjective" class="col-sm-4 col-form-label required">Objective:</label>
+                    <div class="col">
+                        <input type="text" class="form-control " id="customerObjective" name="customerObjective">
+                        <span id="customerObjectiveError" style="color:red;"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <button type="submit" id="intermediateButton" class="btn btn-primary">Submit</button>
+                        <span id="formError" style="color:red;"></span>
+                    </div>                     
+                </div>
+            </form>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Just to be clear</h1>
+                  <p class="lead" style="color: blue;">These details will be autofilled in your resume</p>
+                </div>
+              </div>
+        </div>
+        <div class="col-sm-3 borderOfForm">
+            <img src="../static/img/resume2.png" style='height: 100%; width: 100%; '>
+        </div>
+    </div>
+</div>
+<style>
+    .marginClass { margin-bottom: 20px; }    
+    .required { text-align: left; }
+    .required:after {
+    content:" *";
+    color: red;
+    }
+    .borderOfForm { 
+        border: black solid 2px;
+        margin-bottom: 10px;
+     }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+    var emailRegEx = /\S+@\S+\.\S+/;
+    var nameError =  document.getElementById("customerNameError");
+    var emailError =  document.getElementById("customerEmailError");
+    var jobError =  document.getElementById("customerJobError");
+    var phoneError =  document.getElementById("customerPhoneError");
+    var objectiveError = document.getElementById("customerObjectiveError");
+    $('#customerName').on("input", function(){
+        if ($(this).val().length <= 5 )
+        {
+            nameError.innerHTML = "Please enter a valid name!";
+        }
+        else
+            {
+                nameError.innerHTML = ""; 
+            }
+    })
+    $('#customerEmail').on("input", function(){      
+        if (emailRegEx.test($(this).val()) == false )
+            emailError.innerHTML = "Please enter a valid email!";
+        else
+            emailError.innerHTML = "";
+    })
+    $('#customerJob').on("input", function(){    
+        if ($(this).val().length <= 5 )
+            jobError.innerHTML = "Please enter a valid job!";
+        else
+            jobError.innerHTML = "";
+    })
+    $('#customerPhone').on("input", function(){
+        if ($(this).val().length != 10 && $(this).val().length != 11 && $(this).val().length != 12)
+            phoneError.innerHTML = "Please enter a valid phone number!";
+        else
+            phoneError.innerHTML = "";
+    })
+    $('#customerObjective').on("input", function(){
+        if ($(this).val().length <=100)
+            objectiveError.innerHTML = "Objective should be appropriate!";
+        else
+            objectiveError.innerHTML = "";
+    })
+    $('#intermediateButton').click(function(){
+        if($('#customerName').val().length === 0 && $('#customerEmail').val().length === 0 && $('#customerJob').val().length === 0 &&
+            $('#customerPhone').val().length === 0 && $('#customerObjective').val().length === 100)
+        {
+            document.getElementById('formError').innerHTML = "Please fill the form properly";
+        }
+        var check = $('#customerName').val().length > 5 && emailRegEx.test($('#customerEmail').val()) && $('#customerJob').val().length > 5 &&
+                    ($('#customerPhone').val().length != 10 || $('#customerPhone').val().length != 11 || $('#customerPhone').val().length != 12) && 
+                    $('#customerObjective').val().length > 100;
+        if( check && nameError.innerHTML === "" && emailError.innerHTML === "" && jobError.innerHTML === "" && phoneError.innerHTML === "" && objectiveError.innerHTML === "")
+        {  
+            return true;  
+        }
+        else
+        {     
+            document.getElementById('formError').innerHTML = "Please fill the necessory fields";          
+            return false;
+        }
+    });
+    
+})
+</script>
+{% endblock body %}

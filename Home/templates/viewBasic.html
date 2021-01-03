@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  View Resume
+  
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class = "row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6 border">
+                <div class="row mb-3"> 
+                    <div class="col">
+                        <ul style="list-style-type: none; margin:0; padding:0;">
+                        <li>{{customer.name}}</li>
+                        <li>{{customer.email}}</li>
+                        <li>{{customer.job}}</li>
+                        <li>{{customer.phone}}</li>
+                        </ul>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <h1>Image</h1>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <h4 style="text-align:center">Objective</h4>
+                    <p><small>{{customer.objective}}</small></p>
+                </div>
+                
+                <div class="row">
+                <h4 style="text-align:center">Education</h4>
+                <table class="table table-hover" >
+                  <thead>
+                    <tr>
+                        <th scope="col">Year</th>
+                        <th scope="col">School/College</th>
+                        <th scope="col">Stream</th>
+                        <th scope="col">City</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>                
+                        <td id="collegePassingYearFiller">{{college.passingYear}}</td>
+                        <td id="collegeNameFiller">{{college.institutionName}}</td>
+                        <td id="collegeBranchFiller">{{college.branch}}</td>
+                        <td id="collegeCityNameFiller">{{college.cityName}}</td>
+                    </tr>
+                    <tr>                
+                        <td id="srsecondaryPassingYearFiller">{{srSecondarySchool.passingYear}}</td>
+                        <td id="srsecondarySchoolNameFiller">{{srSecondarySchool.institutionName}}</td>
+                        <td id="srsecondaryBranchFiller">{{srSecondarySchool.branch}}</td>
+                        <td id="srsecondaryCityNameFiller">{{srSecondarySchool.cityName}}</td>
+                    </tr>
+                    <tr>               
+                        <td id="secondaryPassingYearFiller">{{secondarySchool.passingYear}}</td>
+                        <td id="secondarySchoolNameFiller">{{secondarySchool.institutionName}}</td>
+                        <td id="secondaryBranchFiller">{{secondarySchool.branch}}</td>
+                        <td id="secondaryCityNameFiller">{{secondarySchool.cityName}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            
+            <div class="row">
+                <h4>Experience</h4>
+                <div id="experienceDiv">
+                {% for experience in experiences %}
+                        <div class="row addedRow">
+                        <div class="col-sm-4">
+                            <h5 class="namex">{{experience.firmName}}</h5>
+                            <h6 class="namex">{{experience.jobTitle}}</h6>
+                            <p class="namex">{{experience.startDate}}<br/>
+                            <p class="namex">{{experience.endDate}}</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <h6 class="namex">{{experience.project1}}</h6>
+                            <p><small class="namex">{{experience.description1}}</small></p>
+                            <h6 class="namex">{{experience.project2}}</h6>
+                            <p><small class="namex">{{experience.description2}}</small></p><br/>
+                        </div>
+                        </div> 
+                {% endfor %}
+            </div>
+            
+            <div class="row">
+                <h4 style="text-align:center">Skills</h4>
+                <div class="row">
+                    <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col">Skill</th>
+                        <th scope="col">Expertise</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="dynamic-body">
+                        {% for skill in skills %}
+                        <tr class="dynamicRow">
+                            <td class="attrName">{{skill.skillName}}</td>
+                            <td class="attrValue">{{skill.proficiency}}</td>
+                        </tr> 
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+    <style>
+    .border{
+      border: black solid 1px;
+    }
+    h4 {
+    display: flex;
+    flex-direction: row;
+    }
+    h4:before, h4:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid #000;
+    margin: auto;
+    }
+    h4:before {
+    margin-right: 10px
+    }
+    h4:after {
+    margin-left: 10px
+    }
+  </style>
+
+{% endblock body %}

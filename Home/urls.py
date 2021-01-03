@@ -12,4 +12,5 @@ urlpatterns = [
     path('create/<int:pk>/', views.create, name='create'),
     path('viewResume/', views.viewResume, name='viewResume'),
     path('intermediate/', views.intermediate, name='intermediate'),
+    path('viewBasic/<int:pk>',views.viewBasic, name="basic-view")
 ]

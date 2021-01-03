@@ -114,9 +114,79 @@
   </style>
   <script type="text/javascript" src="{% static 'create.js' %}">       
   </script>
-  {% comment %} <script>
-  for skill in {{skills}}(){
-    console.log(skill);
-  }
-  </script> {% endcomment %}
+  <script>
+    var skills=[];
+  var experiences=[];
+  $("#saveBtn").click(function(){
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+    $('.experienceDiv').children().each(function () {
+      var jObTitle = $('.1').text();
+      var firmName = $('.2').text();
+      var startDate = $('.3').text();
+      var endDate = $('.4').text();
+      var project1 = $('.5').text();
+      var project2 = $('.6').text();
+      var description1 = $('.7').text();
+      var description2 = $('.8').text();
+      experiences.push({ JobTitle: jObTitle, FirmName:firmName, StartDate:startDate, EndDate: endDate ,Name1 : project1, Name2 : project2, Description1:description1, Description2:description2});     
+  });
+    $('.addedRow').each(function (a,b) {
+      var elements = document.getElementsByClassName('namex'); 
+      var firmName = elements[0].textContent;
+      var jObTitle = elements[1].textContent;
+      var startDate = elements[2].textContent;
+      var endDate = elements[3].textContent;
+      var project1 = elements[4].textContent;
+      var project2 = elements[5].textContent;
+      var description1 = elements[6].textContent;
+      var description2 = elements[7].textContent;
+      experiences.push({ JobTitle: jObTitle, FirmName:firmName, StartDate:startDate, EndDate: endDate ,Name1 : project1, Name2 : project2, Description1:description1, Description2:description2});     
+    });
+
+    $('.dynamic-body tr').each(function (a, b) {
+      var name = $('.attrName', b).text();
+      var value = $('.attrValue', b).text();
+      skills.push({ Name: name, Value: value });     
+  });
+  console.log(skills);
+    $.ajax({
+      type: "post",
+      headers: {'X-CSRFToken': csrftoken},
+      data: {
+        secondarySchoolName: $("#secondarySchoolNameFiller").html(),
+        secondarySchoolPassingYear: $("#secondaryPassingYearFiller").html(),
+        secondarySchoolCityName: $("#secondaryCityNameFiller").html(),
+        secondarySchoolBranchName: $("#secondaryBranchFiller").html(),
+        srSecondarySchoolName: $("#srsecondarySchoolNameFiller").html(),
+        srSecondarySchoolPassingYear: $("#srsecondaryPassingYearFiller").html(),
+        srSecondarySchoolCityName: $("#srsecondaryCityNameFiller").html(),
+        srSecondarySchoolBranchName: $("#srsecondaryBranchFiller").html(),
+        collegeName: $("#collegeNameFiller").html(),
+        collegePassingYear: $("#collegePassingYearFiller").html(),
+        collegeCityName: $("#collegeCityNameFiller").html(),
+        collegeBranchName: $("#collegeBranchFiller").html(),
+        skills: JSON.stringify(skills),
+        experiences: JSON.stringify(experiences)
+      },
+      success: function(){        
+        window.location = '/viewBasic/'+'{{customer.pk}}';
+      }
+    })
+  })  
+  </script>
 {% endblock body %}

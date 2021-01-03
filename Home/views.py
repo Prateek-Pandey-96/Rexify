@@ -169,10 +169,29 @@ def create(request,pk):
     
     return render(request, 'create.html', context)
 
-
+@login_required(login_url='login')
+def viewBasic(request,pk):
+    customer = Customer.objects.get(id = pk)
+    try:
+        secondarySchool = SecondarySchool.objects.get(customer=customer)
+    except:
+        secondarySchool = SecondarySchool()
+    try:
+        srSecondarySchool = SrSecondarySchool.objects.get(customer=customer)
+    except:
+        srSecondarySchool = SrSecondarySchool()
+    try:
+        college = College.objects.get(customer=customer)
+    except:
+        college = College()
+    
+    skills = Skill.objects.filter(customer=customer)
+    experiences = Experience.objects.filter(customer=customer)
+    context = {'customer': customer,'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': skills,'experiences': experiences}     
+    return render(request,'viewBasic.html', context)
 
 @login_required(login_url='login')
-def viewResume(request):       
+def viewResume(request,pk):  
     return render(request,'viewResume.html')
 
 @login_required(login_url='login')

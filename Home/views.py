@@ -6,7 +6,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import json
-from copy import deepcopy
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -90,7 +89,7 @@ def create(request,pk):
     experiences = Experience.objects.filter(customer=customer)
     newExperiences=[]
     for experience in experiences:
-        newExperiences.append({"JobTitle":experience.jobTitle,"FirmName":experience.firmName,"StartDate":experience.startDate,"EndDate":experience.endDate,"Name1":experience.project1,"Description1":experience.description1,"Name2":experience.project2,"Description2":experience.description2})
+        newExperiences.append({"JobTitle":experience.jobTitle,"FirmName":experience.firmName,"StartDate":experience.startDate.strftime('%F'),"EndDate":experience.endDate.strftime('%F'),"Name1":experience.project1,"Description1":experience.description1,"Name2":experience.project2,"Description2":experience.description2})
     experiences.delete()
 
 
@@ -114,7 +113,7 @@ def create(request,pk):
             try:
                 check = Experience.objects.get(customer=customer,firmName=experience['FirmName'])
                 if check is not None:
-                    print("skill already exists")
+                    print("experience already exists")
             except:
                 experienceObject = Experience(customer=customer,jobTitle=experience['JobTitle'],firmName=experience['FirmName'],startDate=experience['StartDate'],endDate=experience['EndDate']
                 ,project1=experience['Name1'],description1=experience['Description1'],project2=experience['Name2'],description2=experience['Description2'])
@@ -191,8 +190,52 @@ def viewBasic(request,pk):
     return render(request,'viewBasic.html', context)
 
 @login_required(login_url='login')
-def viewResume(request,pk):  
-    return render(request,'viewResume.html')
+def viewAvg(request,pk):
+    customer = Customer.objects.get(id = pk)
+    try:
+        secondarySchool = SecondarySchool.objects.get(customer=customer)
+    except:
+        secondarySchool = SecondarySchool()
+    try:
+        srSecondarySchool = SrSecondarySchool.objects.get(customer=customer)
+    except:
+        srSecondarySchool = SrSecondarySchool()
+    try:
+        college = College.objects.get(customer=customer)
+    except:
+        college = College()
+    
+    skills = Skill.objects.filter(customer=customer)
+    experiences = Experience.objects.filter(customer=customer)
+    context = {'customer': customer,'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': skills,'experiences': experiences}     
+    return render(request,'viewAvg.html', context)
+@login_required(login_url='login')
+
+@login_required(login_url='login')
+def finalPage(request,pk):
+        customer = Customer.objects.get(id = pk)
+        data = {
+             'customer': customer, 
+             'secondarySchool' : SecondarySchool.objects.get(customer=customer),
+             'srSecondarySchool' : SrSecondarySchool.objects.get(customer=customer),
+             'college' : College.objects.get(customer=customer),
+             'skills': Skill.objects.filter(customer=customer),
+             'experiences' : Experience.objects.filter(customer=customer)
+        }
+        return render(request, 'finalPage.html',data)
+
+@login_required(login_url='login')
+def finalPage2(request,pk):
+        customer = Customer.objects.get(id = pk)
+        data = {
+             'customer': customer, 
+             'secondarySchool' : SecondarySchool.objects.get(customer=customer),
+             'srSecondarySchool' : SrSecondarySchool.objects.get(customer=customer),
+             'college' : College.objects.get(customer=customer),
+             'skills': Skill.objects.filter(customer=customer),
+             'experiences' : Experience.objects.filter(customer=customer)
+        }
+        return render(request, 'finalPage2.html',data)
 
 @login_required(login_url='login')
 def intermediate(request):

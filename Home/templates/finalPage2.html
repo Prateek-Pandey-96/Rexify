@@ -1,0 +1,144 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="http://example.com/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            
+        </div>
+        <div class="col-lg-6 border">
+            <div class="row"> 
+                    <div class="col-sm-4 yellow-div">
+                        <h5><i>{{customer.name}}</i></h5>
+                        <h6><em>{{customer.job}}</em></h6>
+                        <div>
+                            <h4><i>Education</i></h4>
+                            <div>
+                                <ul style="list-style-type: none; margin:0; padding:0;">
+                                    <li><em>{{college.institutionName}}</em></li>
+                                    <li><small><em>{{college.branch}}</em></small></li>
+                                    <li><em>{{college.cityName}}</em></li>
+                                    <li><em>{{college.passingYear}}</em></li>
+                                </ul>
+                                <hr>
+                                <ul style="list-style-type: none; margin:0; padding:0;">
+                                    <li><em>{{secondarySchool.institutionName}}</em></li>
+                                    <li><small><em>{{secondarySchool.branch}}</em></small></li>
+                                    <li><em>{{secondarySchool.cityName}}</em></li>
+                                    <li><em>{{secondarySchool.passingYear}}</em></li>
+                                </ul>
+                                <hr>
+                                <ul style="list-style-type: none; margin:0; padding:0;">
+                                    <li><em>{{srSecondarySchool.institutionName}}</em></li>
+                                    <li><small><em>{{srSecondarySchool.branch}}</em></small></li>
+                                    <li><em>{{srSecondarySchool.cityName}}</em></li>
+                                    <li><em>{{srSecondarySchool.passingYear}}</em></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h4><i>Skills</i></h4>
+                            {%for skill in skills%}
+                            <div class="row">
+                                <div class="col">
+                                    <i>{{skill.skillName}}</i>
+                                </div>
+                                <div class="col">
+                                    <i>{{skill.proficiency}}</i>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-sm-8" style="text-align: right;">
+                        <div class="row">
+                            <h4><i>Objective</i></h4>
+                            <div style="text-align:left;">
+                                <small>{{customer.objective}}</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4><i>Experience</i></h4>
+                            {%for experience in experiences%}
+                            <div class="row">
+                                <div class="col">
+                                    <h5 style="text-align:left;"><em>{{experience.firmName}}</em></h5>
+                                </div>
+                                <div class="col">
+                                    <h6 style="text-align:right;"><em>{{experience.jobTitle}}</em></h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h7 style="text-align:left;"><em>{{experience.startDate}}</em></h7>
+                                </div>
+                                <div class="col">
+                                    <h7 style="text-align:right;"><em>{{experience.endDate}}</em></h7>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align:left;">
+                                <h7><i>{{experience.project1}}</i></h7>
+                                <p><small>{{experience.description1}}</small></p>
+                            </div>
+                            <div class="row" style="text-align:left;" >
+                                <h7><i>{{experience.project2}}</i></h7>
+                                <p><small>{{experience.description2}}</small></p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row"> 
+                            <h4>Contact Details</h4>                           
+                            <ul style="list-style-type: none; margin:3px; text-align:left;">
+                                <li><small><em>{{customer.email}}</em></small></li>
+                                <li><small><em>{{customer.phone}}</em></small></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            
+        </div>
+      </div>
+    </div>
+    <style>
+    .border{
+      border: black solid 1px;
+    }
+    {% comment %} .yellow-div{
+        background-color:#fcb11c;
+    } {% endcomment %}
+    h4 {
+    display: flex;
+    flex-direction: row;
+    }
+    h4:before, h4:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid #000;
+    margin: auto;
+    }
+    h4:before {
+    margin-right: 10px
+    }
+    h4:after {
+    margin-left: 10px
+    }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            window.print();
+        })
+    </script>
+  </body> 
+  </html>

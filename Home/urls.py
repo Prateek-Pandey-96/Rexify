@@ -10,7 +10,9 @@ urlpatterns = [
     path('templates/', views.templates, name='templates'),
     path('contact/', views.contact, name='contact'),
     path('create/<int:pk>/', views.create, name='create'),
-    path('viewResume/', views.viewResume, name='viewResume'),
+    path('finalPage/<int:pk>/',views.finalPage , name="finalPage"),
+    path('finalPage2/<int:pk>', views.finalPage2, name="finalPage2"),
     path('intermediate/', views.intermediate, name='intermediate'),
-    path('viewBasic/<int:pk>',views.viewBasic, name="basic-view")
+    path('viewBasic/<int:pk>',views.viewBasic, name="basic-view"),
+    path('viewAvg/<int:pk>',views.viewAvg, name="average-view")
 ]

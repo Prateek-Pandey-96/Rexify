@@ -68,7 +68,7 @@
                   <div class="col-sm-4">
                     <h5 class="namex">{{experience.FirmName}}</h5>
                     <h6 class="namex">{{experience.JobTitle}}</h6>
-                    <p class="namex">{{experience.StartDate}}<br/>
+                    <p class="namex">{{experience.StartDate}}
                     <p class="namex">{{experience.EndDate}}</p>
                   </div>
                   <div class="col-sm-8">
@@ -76,6 +76,7 @@
                     <p><small class="namex">{{experience.Description1}}</small></p>
                     <h6 class="namex">{{experience.Name2}}</h6>
                     <p><small class="namex">{{experience.Description2}}</small></p><br/>
+                    <td><input type="button" class="btn btn-sm btn-danger deleteItemExp" value="Remove"></td>
                   </div>
                 </div> 
           {% endfor %}
@@ -152,8 +153,8 @@
       var startDate = elements[2].textContent;
       var endDate = elements[3].textContent;
       var project1 = elements[4].textContent;
-      var project2 = elements[5].textContent;
-      var description1 = elements[6].textContent;
+      var project2 = elements[6].textContent;
+      var description1 = elements[5].textContent;
       var description2 = elements[7].textContent;
       experiences.push({ JobTitle: jObTitle, FirmName:firmName, StartDate:startDate, EndDate: endDate ,Name1 : project1, Name2 : project2, Description1:description1, Description2:description2});     
     });

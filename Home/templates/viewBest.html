@@ -90,17 +90,17 @@
                         </ul>
                         <hr>
                         <ul style="list-style-type: none; margin:0; padding:0;">
-                            <li>{{secondarySchool.institutionName}}</li>
-                            <li><small>{{secondarySchool.branch}}</small></li>
-                            <li>{{secondarySchool.cityName}}</li>
-                            <li>{{secondarySchool.passingYear}}</li>
-                        </ul>
-                        <hr>
-                        <ul style="list-style-type: none; margin:0; padding:0;">
                             <li>{{srSecondarySchool.institutionName}}</li>
                             <li><small>{{srSecondarySchool.branch}}</small></li>
                             <li>{{srSecondarySchool.cityName}}</li>
                             <li>{{srSecondarySchool.passingYear}}</li>
+                        </ul>                        
+                        <hr>
+                        <ul style="list-style-type: none; margin:0; padding:0;">
+                            <li>{{secondarySchool.institutionName}}</li>
+                            <li><small>{{secondarySchool.branch}}</small></li>
+                            <li>{{secondarySchool.cityName}}</li>
+                            <li>{{secondarySchool.passingYear}}</li>
                         </ul>
                     </div>
             </div>
@@ -117,44 +117,7 @@
         </div>
     </div>
 </div>
-<style>
-    .border{
-      border: black solid 1px;
-    }
-    .light-grey-div{
-        background-color:#f4f4f4;
-    }
-    .dot {
-        height: 15px;
-        width: 15px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-    }   
-    .dotblack {
-        height: 15px;
-        width: 15px;
-        background-color: black;
-        border-radius: 50%;
-        display: inline-block;
-    }   
-    h4 {
-    display: flex;
-    flex-direction: row;
-    }
-    h4:before, h4:after{
-    content: "";
-    flex: 1 1;
-    border-bottom: 1px solid #000;
-    margin: auto;
-    }
-    h4:before {
-    margin-right: 10px
-    }
-    h4:after {
-    margin-left: 10px
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/finalPage3.css' %}"/>
     <script type="text/javascript">
         $('#backBtn').click(function(){
            window.location = '/create/'+'{{customer.pk}}';

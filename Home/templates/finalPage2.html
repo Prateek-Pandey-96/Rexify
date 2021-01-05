@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="http://example.com/favicon.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/finalPage2.css' %}"/>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <!-- Jquery-->
@@ -111,33 +112,6 @@
         </div>
       </div>
     </div>
-    <style>
-    body {
-        -webkit-print-color-adjust:exact !important;
-    }
-    .border{
-      border: black solid 1px;
-    }
-    .yellow-div{
-        background-color:#fcb11c;
-    }
-    h4 {
-    display: flex;
-    flex-direction: row;
-    }
-    h4:before, h4:after{
-    content: "";
-    flex: 1 1;
-    border-bottom: 1px solid #000;
-    margin: auto;
-    }
-    h4:before {
-    margin-right: 10px
-    }
-    h4:after {
-    margin-left: 10px
-    }
-    </style>
     <script type="text/javascript">
         $(document).ready(function(){
             window.print();

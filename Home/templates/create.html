@@ -150,8 +150,8 @@
       var elements = document.getElementsByClassName('namex'); 
       var firmName = elements[0].textContent;
       var jObTitle = elements[1].textContent;
-      var startDate = elements[2].textContent;
-      var endDate = elements[3].textContent;
+      var startDate = elements[2].textContent.substring(0,10);
+      var endDate = elements[3].textContent.substring(0,10);
       var project1 = elements[4].textContent;
       var project2 = elements[6].textContent;
       var description1 = elements[5].textContent;

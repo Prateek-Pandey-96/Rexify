@@ -12,7 +12,9 @@ urlpatterns = [
     path('create/<int:pk>/', views.create, name='create'),
     path('finalPage/<int:pk>/',views.finalPage , name="finalPage"),
     path('finalPage2/<int:pk>', views.finalPage2, name="finalPage2"),
+    path('finalPage3/<int:pk>', views.finalPage3, name="finalPage3"),
     path('intermediate/', views.intermediate, name='intermediate'),
     path('viewBasic/<int:pk>',views.viewBasic, name="basic-view"),
-    path('viewAvg/<int:pk>',views.viewAvg, name="average-view")
+    path('viewAvg/<int:pk>',views.viewAvg, name="average-view"),
+    path('viewBest/<int:pk>', views.viewBest, name="best-view")
 ]

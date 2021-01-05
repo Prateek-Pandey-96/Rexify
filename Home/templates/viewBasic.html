@@ -121,9 +121,22 @@
                     <div class="container">
                     <h1 class="display-4">Feels Good</h1>
                     <p class="lead" style="color: blue;">Ready to obtain pdf!</p>
-                    <input type="button" class="btn btn-sm btn-primary" id="printBtn" value="Generate PDF">
+                    <input type="button" class="btn btn-sm btn-primary" id="printBtn" value="Generate PDF">                    
                     </div>
                 </div>
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                    <p class="lead" style="color: blue;">Check better view!</p>
+                    <input type="button" class="btn btn-sm btn-primary" id="avgReturn" value="Average view">                    
+                    </div>
+                </div>  
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                    <p class="lead" style="color: blue;">Check best view!</p>
+                    <input type="button" class="btn btn-sm btn-primary" id="bestReturn" value="Best view       ">                    
+                    </div>
+                </div>   
+
             </div>
         </div>
     </div>
@@ -154,6 +167,12 @@
         })
         $('#printBtn').click(function(){
            window.location = '/finalPage/'+'{{customer.pk}}';
+        })
+        $('#avgReturn').click(function(){
+           window.location = '/viewAvg/'+'{{customer.pk}}';
+        })
+        $('#bestReturn').click(function(){
+           window.location = '/viewBest/'+'{{customer.pk}}';
         })
     </script>
 {% endblock body %}

@@ -209,7 +209,27 @@ def viewAvg(request,pk):
     experiences = Experience.objects.filter(customer=customer)
     context = {'customer': customer,'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': skills,'experiences': experiences}     
     return render(request,'viewAvg.html', context)
+
 @login_required(login_url='login')
+def viewBest(request,pk):
+    customer = Customer.objects.get(id = pk)
+    try:
+        secondarySchool = SecondarySchool.objects.get(customer=customer)
+    except:
+        secondarySchool = SecondarySchool()
+    try:
+        srSecondarySchool = SrSecondarySchool.objects.get(customer=customer)
+    except:
+        srSecondarySchool = SrSecondarySchool()
+    try:
+        college = College.objects.get(customer=customer)
+    except:
+        college = College()
+    
+    skills = Skill.objects.filter(customer=customer)
+    experiences = Experience.objects.filter(customer=customer)
+    context = {'customer': customer,'secondarySchool':secondarySchool, 'srSecondarySchool':srSecondarySchool,'college': college,'skills': skills,'experiences': experiences}     
+    return render(request,'viewBest.html', context)
 
 @login_required(login_url='login')
 def finalPage(request,pk):
@@ -236,6 +256,19 @@ def finalPage2(request,pk):
              'experiences' : Experience.objects.filter(customer=customer)
         }
         return render(request, 'finalPage2.html',data)
+    
+@login_required(login_url='login')
+def finalPage3(request,pk):
+        customer = Customer.objects.get(id = pk)
+        data = {
+             'customer': customer, 
+             'secondarySchool' : SecondarySchool.objects.get(customer=customer),
+             'srSecondarySchool' : SrSecondarySchool.objects.get(customer=customer),
+             'college' : College.objects.get(customer=customer),
+             'skills': Skill.objects.filter(customer=customer),
+             'experiences' : Experience.objects.filter(customer=customer)
+        }
+        return render(request, 'finalPage3.html',data)
 
 @login_required(login_url='login')
 def intermediate(request):

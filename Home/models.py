@@ -73,8 +73,6 @@ class Skill(models.Model):
     proficiency = models.CharField(max_length=20)
 
 class Resume(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null = True, on_delete = models.SET_NULL)
     customer = models.ForeignKey(Customer , null = True, on_delete = models.SET_NULL)
-    secondarySchoolInfo = models.OneToOneField(SecondarySchool, null = True,on_delete=models.SET_NULL)
-    srSecondarySchoolInfo = models.OneToOneField(SrSecondarySchool, null = True,on_delete=models.SET_NULL)
-    collegeInfo = models.OneToOneField(College, null = True,on_delete=models.SET_NULL)
     date = models.DateField()

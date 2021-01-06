@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+  My Resumes
+{% endblock title %}
+{% block body %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-6 my-4">
+            <table class="table table-bordered border-secondary">
+                {% if resumes %}
+              <thead class="table-dark">
+                <tr>
+                    <td>Person</td>
+                    <td>Date Created</td>
+                    <td>Update</td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for resume in resumes%}
+                <tr>
+                    <td>{{resume.customer.name}}</td>
+                    <td>{{resume.date}}</td>
+                    <td><input type="button" class="btn btn-sm btn-info" value="Edit page" onclick="window.location = '/create/'+'{{resume.customer.pk}}';"></td>
+                </tr>
+                {% endfor %}
+              </body>
+            </table>
+            {% else %}
+            <div class="jumbotron jumbotron-fluid mb-4">
+                <div class="container">
+                  <h1 class="display-4">Hello!</h1>
+                  <p class="lead" style="color: blue;">Seems like you are creating resume for the first time on Rexify!</p>
+                  <input type="button" class="btn btn-sm btn-primary" value="Create Resume" onclick='window.location = "{% url 'templates' %}"'>
+                </div>
+              </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-3">
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        $("#four").addClass('underlinePerma');
+    </script>
+{% endblock body%}

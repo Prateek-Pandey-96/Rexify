@@ -17,25 +17,37 @@
     </div>
   </div>
   <div class="row my-4">
-    <div class="col-lg-6 text-center" >
-      <h3 >Making Resume was never this interactive!</h3>
+    <div class="col-lg-4 text-center" >
+      <h3 ><em>Making Resume was never this </em></h3>
     </div>
-    <div class="col-lg-6 " >
-      <input type="button" id="createBtn" class="btn btn-primary" value="Create Resume"/>
-    </div>       
+    <div class="col-lg-4 text-center" >
+      <input type="button" id="createBtn" class="btn btn-primary input-block-level form-control" value="Click Me"/>
+    </div> 
+    <div class="col-lg-4 " >
+      <h3><em> interactive and fun!</em></h3>
+    </div>      
   </div>
   <div class="row my-4">
     <div class="col-lg-4" >
       <canvas id="myChart"></canvas>
     </div> 
-    <div class="col-lg-4" >
-      second graph
-    </div>
-    <div class="col-lg-4" >
-      third graph
-    </div>   
+    <div class="col-lg-8" >
+       <ul ><em>
+        <li class="liElement">Provide some details!</li>
+        <li class="liElement">Create your resume in an interactive window!</li>
+        <li class="liElement">Submit the resume for basic view!</li>
+        <li class="liElement">Choose another view if you didnt like it!</li>
+        <li class="liElement">Generate Pdf</li>
+      </em></ul>
+    </div> 
   </div>
 </div>
+<style>
+  {% comment %} .liElement{
+    background:black;
+    color:white;
+  } {% endcomment %}
+</style>
 <script  type="text/javascript">
   $(document).ready(function(){
     $("#one").addClass('underlinePerma');

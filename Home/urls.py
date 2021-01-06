@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('templates/', views.templates, name='templates'),
     path('contact/', views.contact, name='contact'),
+    path('myResumes/',views.myResumes, name='my-resumes'),
     path('create/<int:pk>/', views.create, name='create'),
     path('finalPage/<int:pk>/',views.finalPage , name="finalPage"),
     path('finalPage2/<int:pk>', views.finalPage2, name="finalPage2"),

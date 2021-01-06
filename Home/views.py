@@ -283,3 +283,9 @@ def intermediate(request):
         customer.save()
         return redirect('create',customer.pk)
     return render(request, 'intermediate.html')
+
+@login_required(login_url='login')
+def myResumes(request):
+    resumes = Resume.objects.filter(user=request.user)
+    context = { 'resumes':resumes}
+    return render(request, 'myResumes.html',context)

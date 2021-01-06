@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-  My Resumes
+  My Activity
 {% endblock title %}
 {% block body %}
     <div class="container">
@@ -12,9 +12,10 @@
                 {% if resumes %}
               <thead class="table-dark">
                 <tr>
-                    <td>Person</td>
-                    <td>Date Created</td>
-                    <td>Update</td>
+                    <td>Changes made for:-</td>
+                    <td>Changed on:-</td>
+                    <td>View current state</td>
+                    <td>Change Again</td>
                 </tr>
               </thead>
               <tbody>
@@ -22,6 +23,7 @@
                 <tr>
                     <td>{{resume.customer.name}}</td>
                     <td>{{resume.date}}</td>
+                    <td><input type="button" class="btn btn-sm btn-info" value="View Basic" onclick="window.location = '/viewBasic/'+'{{resume.customer.pk}}';"></td>
                     <td><input type="button" class="btn btn-sm btn-info" value="Edit page" onclick="window.location = '/create/'+'{{resume.customer.pk}}';"></td>
                 </tr>
                 {% endfor %}

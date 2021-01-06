@@ -109,6 +109,9 @@ def create(request,pk):
         skills = json.loads(request.POST.get("skills"))
         experiences = json.loads(request.POST.get("experiences"))
 
+        resume = Resume(date=datetime.today(), customer=customer, user=request.user )
+        resume.save()
+
         for experience in experiences:
             try:
                 check = Experience.objects.get(customer=customer,firmName=experience['FirmName'])

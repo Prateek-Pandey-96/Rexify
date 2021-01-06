@@ -116,6 +116,9 @@
   <script type="text/javascript" src="{% static 'js/create.js' %}">       
   </script>
   <script>
+  window.onbeforeunload = function(){
+    return "Please use the submit button on the bottom of the page to prevent data loss!";
+  }
     var skills=[];
   var experiences=[];
   $("#saveBtn").click(function(){
